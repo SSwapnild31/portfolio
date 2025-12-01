@@ -1,0 +1,54 @@
+// Basic interactivity for the static portfolio: contact form, year, smooth anchor scrolling.
+// Put your real email in mailto if you want direct mail.
+
+// set current year
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// smooth scroll for internal links
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click', e=>{
+    const target = document.querySelector(a.getAttribute('href'));
+    if(target){
+      e.preventDefault();
+      target.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+  });
+});
+
+// contact form simple handler: open mailto with prefilled values
+const sendBtn = document.getElementById('sendBtn');
+if(sendBtn){
+  sendBtn.addEventListener('click', ()=>{
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    if(!name || !email){
+      alert('Please fill name and email');
+      return;
+    }
+
+    // TODO: replace the email address below with your real address
+    const to = 'swapnil.nd7057@gmail.com';
+    const subject = encodeURIComponent(`Portfolio message from ${name}`);
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
+    window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+  });
+}
+
+// Optional: small tilt effect for project cards on mouse move
+document.querySelectorAll('.project-card').forEach(card=>{
+  card.addEventListener('mousemove', (e)=>{
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const cx = rect.width/2;
+    const cy = rect.height/2;
+    const dx = (x - cx) / cx;
+    const dy = (y - cy) / cy;
+    card.style.transform = `perspective(900px) rotateX(${dy * -3}deg) rotateY(${dx * 3}deg) translateY(-6px)`;
+  });
+  card.addEventListener('mouseleave', ()=>{
+    card.style.transform = '';
+  });
+});
