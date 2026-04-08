@@ -4,6 +4,44 @@
 // set current year
 document.getElementById('year').textContent = new Date().getFullYear();
 
+const images = [
+  "images/1.jpg",
+  "images/2.jpg",
+  //"images/3.jpg",
+  //"images/4.jpg"
+];
+
+let index = 0;
+const hero = document.querySelector(".hero");
+
+/*function changeBackground() {
+  hero.style.backgroundImage = `url(${images[index]})`;
+  index = (index + 1) % images.length;
+}
+
+setInterval(changeBackground, 4000); // 4 sec
+changeBackground();*/
+
+function changeBackground() {
+  // fade out
+  hero.classList.add("fade");
+
+  setTimeout(() => {
+    // change image
+    index = (index + 1) % images.length;
+    hero.style.backgroundImage = `url(${images[index]})`;
+
+    // fade in
+    hero.classList.remove("fade");
+  }, 500);
+}
+
+// initial image
+hero.style.backgroundImage = `url(${images[0]}`;
+
+// change every 4 sec
+setInterval(changeBackground, 4000);
+
 // smooth scroll for internal links
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
   a.addEventListener('click', e=>{

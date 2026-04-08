@@ -1,5 +1,5 @@
 :root{
-  --bg:#f7f8fb;
+  --bg:#889cdb;
   --card:#ffffff;
   --muted:#6b7280;
   --accent:#0ea5a4; /* teal-ish */
@@ -26,7 +26,24 @@ body{
 .container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
 
 /* Hero */
-.hero{padding:64px 0;background:linear-gradient(180deg,#ffffff 0%, #f8fafc 100%);border-bottom:1px solid rgba(15,23,42,0.04)}
+.hero{  
+  position: relative;
+  overflow: hidden;
+  padding: 220px 0;
+  background-size: cover;
+  background-position: center;
+  transition: background-image 3s ease-in-out;
+  
+  /*
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-image: url("images/7.jpg");
+  z-index: 0;
+  border-bottom:1px solid rgba(15,23,42,0.04);*/
+}
+
+.hero-inner{position: relative;z-index: 1;}
+.hero .name,.hero .role,.hero .intro{color: #000000;}
 .hero-inner{display:flex;gap:32px;align-items:center;justify-content:space-between}
 .hero-left{flex:1;min-width:260px}
 .hero-right{width:320px;padding:16px;display:flex;justify-content:flex-end}
@@ -35,15 +52,32 @@ body{
 .role{margin:0;color:var(--muted);font-weight:600}
 .intro{margin:14px 0 0;color: #334155; max-width:60ch}
 .meta{display:flex;align-items:center;gap:16px;margin-top:18px}
-.badge{display:inline-block;padding:6px 10px;border-radius:999px;font-weight:600;font-size:0.85rem;background:linear-gradient(90deg,var(--accent), var(--accent-2));color:white;box-shadow:var(--glass-shadow)}
-.badge.available{background:linear-gradient(90deg,var(--accent),#06b6d4)}
+
+.badge{
+  display:inline-block;
+  padding:10px 20px;
+  border-radius:12px;
+  font-weight:700;
+  background:linear-gradient(90deg,var(--accent), var(--accent-2));
+  color:rgb(0, 157, 26);
+  box-shadow:var(--glass-shadow)
+}
+.badge.available{background: transparent;border:2px solid rgba(0, 157, 26)}
 
 .social a{margin-right:10px;color:var(--accent-2);text-decoration:none;font-weight:600}
 
 .cta{margin-top:20px;display:flex;gap:12px}
 .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;font-weight:700;text-decoration:none;cursor:pointer;border:none}
 .btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:white;box-shadow: 0 6px 18px rgba(124,58,237,0.15)}
-.btn.outline{background:transparent;border:1px solid rgba(15,23,42,0.06);color:var(--accent-2)}
+.btn.outline{background:transparent;border:2px solid rgba(0, 0, 0, 0.06);color:var(--accent-2)}
+.btn.outline:hover {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  color: white;
+  border: none;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(16,24,40,0.15);
+}
+.btn:hover {transform: translateY(-3px) scale(1.02);}
 
 /* profile card */
 .profile-card{background:var(--card);border-radius:20px;padding:18px;box-shadow:var(--shadow);display:flex;align-items:center;gap:12px;min-width:260px}
@@ -72,21 +106,87 @@ body{
 /* Hover overlay panel inside card */
 .project-hover{
   position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  padding:20px;background:linear-gradient(180deg,rgba(124,58,237,0.06),rgba(6,182,212,0.04));
+  padding:20px;background:linear-gradient(180deg,rgba(124,58,237,0.2),rgba(6,182,212,0.15));
   transform:translateY(100%);transition:transform .28s cubic-bezier(.2,.9,.2,1);opacity:0
 }
 .project-card:hover .project-hover{transform:translateY(0);opacity:1}
+.project-title{transition: color 0.3s ease;}
+.project-card:hover .project-title{color: var(--accent-2);}
 .hover-desc{margin:0 0 14px;color:#0f172a;font-weight:600}
 .project-links{display:flex;gap:10px}
 .project-links .link{background:#fff;padding:8px 12px;border-radius:10px;text-decoration:none;font-weight:700;border:1px solid rgba(15,23,42,0.06)}
 
-/* Certificates */
-.cert-list{list-style:none;padding:0;margin:8px 0 0;display:flex;flex-direction:column;gap:10px}
-.cert-list a{text-decoration:none;color:var(--accent-2);font-weight:700}
 
-/* Blogs */
+/* Certificates & Learning */
 .blogs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.blog-card{background:var(--card);padding:18px;border-radius:14px;box-shadow:var(--glass-shadow)}
+.blog-card{
+  position: relative;
+  background: linear-gradient(180deg,#ffffff,#fbfdff);
+  padding:18px;
+  border-radius:14px;
+  box-shadow:var(--glass-shadow);
+  overflow: hidden;
+
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.blog-card:hover{transform: translateY(-8px);box-shadow: 0 12px 36px rgba(16,24,40,0.12);}
+.blog-hover{
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: linear-gradient(180deg, rgba(124,58,237,0.1), rgba(6,182,212,0.08));
+
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+  opacity: 0;
+}
+
+.blog-card:hover .blog-hover{transform: translateY(0);opacity: 1;}
+.blog-card:hover h4{color: var(--accent-2);}
+.blog-card:hover{transform: translateY(-6px) scale(1.02);}
+.blog-card a{
+  font-family: 'Times New Roman', Times, serif; 
+  font-size: medium; 
+  text-decoration: none;
+  display: flex;
+  justify-content: flex-end;
+  color: blue;
+  transition: all 0.25s ease;
+}
+.blog-card a:hover{ opacity: 0.8;transform: scale(1.07);}
+
+
+/* Experience */
+.exp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.exp-date {
+  font-style: italic;
+  font-size: 11px;
+  color: var(--muted);
+  white-space: nowrap
+}
+.exp-desc {
+  margin-top: 10px;
+  color: #334155;
+  line-height: 1.6;
+}
+.exp-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 12px;
+}
+.blog-card h4, 
+.blog-card p{margin: 4px;}
+.exp-footer a{font-family: 'Times New Roman', Times, serif; font-size: medium; text-decoration: none;}
+.exp.btn.outline{background:transparent;border:1px solid rgba(0, 0, 0, 0.06);color:var(--accent)}
+
 
 /* Contact */
 .contact-grid{display:grid;grid-template-columns:2fr 1fr;gap:24px;align-items:start}
@@ -94,6 +194,15 @@ body{
 .contact-form label{display:block;margin-bottom:12px;font-weight:600;color:var(--muted)}
 .contact-form input,.contact-form textarea{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(15,23,42,0.06);margin-top:6px;font-size:0.95rem}
 .contact-info{background:transparent;padding:18px}
+.contact-info .quick-links a{
+  text-decoration: none;
+  color: blue;
+  transition: all 0.2s ease; 
+}
+.contact-info .quick-links a:hover {
+  opacity: 0.9;
+}
+
 
 /* Footer */
 .footer{padding:20px 0;background:#0b1220;color:#cbd5e1;margin-top:40px}
