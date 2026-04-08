@@ -1,5 +1,3 @@
-// Basic interactivity for the static portfolio: contact form, year, smooth anchor scrolling.
-// Put your real email in mailto if you want direct mail.
 
 // set current year
 document.getElementById('year').textContent = new Date().getFullYear();
