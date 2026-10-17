@@ -14,51 +14,30 @@
   <main class="site">
     <!-- HERO -->
     <header class="hero" id="home">
-      <div class="hero-bg">
-      <div class="container hero-inner">
-        <div class="hero-left">
-          <h1 class="name">Swapnil Divate</h1>
-          <p class="role">Software Engineer • C/C++ Developer</p>
-          <p class="intro">
-            Aspiring Software Developer passionate about building modern, scalable software.
-            Currently exploring Linux, Networking, and real-world coding challenges.
-          </p>
+      <div class="container">
+        <div class="hero-inner">
+          <div class="hero-left">
+            <p class="eyebrow">Software Developer • Fintech • C/C++ • Linux</p>
+            <h1 class="name">Hi, I’m <span>Swapnil Divate</span></h1>
+            <p class="intro">
+              Working in Fintech as a Software Developer, focused on building reliable, scalable software
+              and solving real-world problems with clean engineering, strong fundamentals, and a practical
+              understanding of performance, networking, and Linux-based systems.
+            </p>
 
-          <div class="meta">
+            <div class="meta">
+              <span class="badge available">Working in Fintech</span>
+              <a class="chip-btn" href="https://www.hackerrank.com/profile/swapnil_d31" target="_blank">HackerRank</a>
+              <a class="chip-btn" href="https://www.linkedin.com/in/swapnil-divate-181337225/" target="_blank">LinkedIn</a>
+            </div>
+
             <div class="cta">
-              <span class="badge available">Available</span>
-              <a class="btn outline" href="https://www.hackerrank.com/profile/swapnil_d31"
-                target="_blank">HackerRank</a>
-              <a class="btn outline" href="https://www.linkedin.com/in/swapnil-divate-181337225/"
-                target="_blank">LinkedIn</a>
-            </div>
-          </div>
-
-          <div class="cta">
-            <a class="btn outline" href="https://github.com/SSwapnild31" target="_blank">Github Link</a>
-            <a class="btn outline" href="#projects">View Projects</a>
-            <a class="btn outline"
-              href="https://drive.google.com/file/d/1gCnk3iVwZLo1o4CJidUmwb0btkEV-loK/view?usp=drive_link"
-              target="_blank">Resume</a>
-            <!--<a class="btn primary" href="#projects">View Projects</a>-->
-          </div>
-        </div>
-
-        <!--
-        <div class="hero-right">
-          <div class="profile-card">
-            <div class="avatar" role="img" aria-label="Profile image">Your Photo</div>
-            <div class="profile-details">
-              <p class="pd-name">Your Name</p>
-              <p class="pd-title">Role / Title</p>
-              <p class="pd-links">
-                <a href="#" target="_blank">Resume</a> · <a href="#contact" target="_blank">Contact</a>
-              </p>
+              <a class="chip-btn primary" href="https://github.com/SSwapnild31" target="_blank">Github</a>
+              <a class="chip-btn" href="#projects">View Projects</a>
+              <a class="chip-btn" href="https://drive.google.com/file/d/1gCnk3iVwZLo1o4CJidUmwb0btkEV-loK/view?usp=drive_link" target="_blank">Resume</a>
             </div>
           </div>
         </div>
-        -->
-      </div>
       </div>
     </header>
 
@@ -226,30 +205,30 @@
       <div class="container">
         <h2 class="section-title">Get in touch</h2>
         <div class="contact-grid">
-          <form id="contactForm" class="contact-form" onsubmit="return false;">
+          <form id="contactForm" class="contact-form">
             <label>
               <span>Name</span>
-              <input id="name" type="text" required placeholder="Your name" />
+              <input id="name" name="name" type="text" required placeholder="Your name" />
             </label>
             <label>
               <span>Email</span>
-              <input id="email" type="email" required placeholder="you@example.com" />
+              <input id="email" name="email" type="email" required placeholder="you@example.com" />
             </label>
             <label class="full">
               <span>Message</span>
-              <textarea id="message" rows="5" placeholder="How can I help?"></textarea>
+              <textarea id="message" name="message" rows="5" required placeholder="How can I help?"></textarea>
             </label>
 
             <div class="form-actions">
-              <button id="sendBtn" class="btn primary" type="button">Send Message</button>
+              <button id="sendBtn" class="btn primary" type="submit">Send Message</button>
               <button class="btn outline" type="reset">Reset</button>
             </div>
-            <!--<p class="note">Or email me directly at <a href="mailto:you@example.com">you@example.com</a></p>-->
+            <p id="formStatus" class="form-status" aria-live="polite"></p>
           </form>
 
           <aside class="contact-info">
             <span class="badge available"> Availability </span>
-            <p><strong>Open to Full-time/Internship opportunities & ready to relocate.</strong></p>
+            <p><strong>Working in Fintech as Software Developer.</strong></p>
             
             <h3>Quick links</h3>
             <ul class="quick-links">
